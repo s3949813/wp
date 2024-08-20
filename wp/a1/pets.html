@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets Victoria - Pets</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ysabeau+SC|Exo|Permanent+Marker|Poetsen+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+    <header>
+        <nav>
+            <div class="logo-dropdown">
+                <a href="index.html"><img src="images/logo.png" alt="Pets Victoria Logo"></a>
+                <select onchange="navigate(this.value)">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="index.html">Home</option>
+                    <option value="pets.html">Pets</option>
+                    <option value="add.html">Add</option>
+                    <option value="gallery.html">Gallery</option>
+                </select>
+            </div>
+            <form>
+                <input type="text" placeholder="Search" />
+                <span class="material-icons">search</span>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <h2>Discover Pets Victoria</h2>
+        <p class="description">PETS VICTORIA IS A DEDICATED PET ADOPTION ORGANIZATION BASED IN VICTORIA, AUSTRALIA, FOCUSED ON PROVIDING A SAFE AND LOVING ENVIRONMENT FOR PETS IN NEED. WITH A COMPASSIONATE APPROACH, PETS VICTORIA WORKS TIRELESSLY TO RESCUE, REHABILITATE, AND REHOME DOGS, CATS, AND OTHER ANIMALS. THEIR MISSION IS TO CONNECT THESE DESERVING PETS WITH CARING INDIVIDUALS AND FAMILIES, CREATING LIFELONG BONDS. THE ORGANIZATION OFFERS A RANGE OF SERVICES, INCLUDING ADOPTION COUNSELING, PET EDUCATION, AND COMMUNITY SUPPORT PROGRAMS, ALL AIMED AT PROMOTING RESPONSIBLE PET OWNERSHIP AND REDUCING THE NUMBER OF HOMELESS ANIMALS.</p>
+
+        <div class="content">
+            <div class="pets-container">
+                <img src="images/pets.jpeg" alt="Pets" class="pets-image">
+                <div class="pets-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PET</th>
+                                <th>TYPE</th>
+                                <th>AGE</th>
+                                <th>LOCATION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MILO</td>
+                                <td>CAT</td>
+                                <td>3 MONTHS</td>
+                                <td>MELBOURNE CBD</td>
+                            </tr>
+                            <tr>
+                                <td>BAXTER</td>
+                                <td>DOG</td>
+                                <td>5 MONTHS</td>
+                                <td>CAPE WOOLAMAI</td>
+                            </tr>
+                            <tr>
+                                <td>LUNA</td>
+                                <td>CAT</td>
+                                <td>1 MONTH</td>
+                                <td>FERNTREE GULLY</td>
+                            </tr>
+                            <tr>
+                                <td>WILLOW</td>
+                                <td>DOG</td>
+                                <td>48 MONTHS</td>
+                                <td>MARYSVILLE</td>
+                            </tr>
+                            <tr>
+                                <td>OLIVER</td>
+                                <td>CAT</td>
+                                <td>12 MONTHS</td>
+                                <td>GRAMPIANS</td>
+                            </tr>
+                            <tr>
+                                <td>BELLA</td>
+                                <td>DOG</td>
+                                <td>10 MONTHS</td>
+                                <td>CARLTON</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Copyright s123456. All Rights Reserved | Designed for Pets Victoria</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
