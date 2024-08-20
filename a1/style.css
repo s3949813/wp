@@ -2,12 +2,14 @@ body {
     font-family: 'Ysabeau SC', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e4e8e0;
+    background-color: #fdf4e3;
 }
 
 header {
-    background-color: #008080  ;
-    padding: 10px;
+    background-color: #008080;
+    padding: 20px 10px; /* Increased padding for better spacing */
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 nav {
@@ -24,7 +26,7 @@ nav {
 }
 
 nav a img {
-    height: 100px;
+    height: 50px;
     margin-right: 10px;
 }
 
@@ -32,8 +34,9 @@ nav select,
 nav input[type="text"] {
     background-color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 12px; /* Increased padding for form inputs */
     font-size: 16px;
+    border-radius: 5px; /* Added slight rounding to the form inputs */
 }
 
 nav form {
@@ -47,9 +50,9 @@ nav input[type="text"] {
 }
 
 nav .material-icons {
-    background-color: #36454F;
+    background-color: #008080;
     color: #fff;
-    padding: 5px 10px;
+    padding: 8px 12px; /* Adjusted padding to match input size */
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
@@ -60,7 +63,7 @@ nav .material-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 60px 20px; /* Increased padding for more space around content */
 }
 
 .text {
@@ -68,16 +71,19 @@ nav .material-icons {
 }
 
 .text h1 {
-    color: #36454F ;
+    color: #E57F3D; 
+    font-family: 'Permanent Marker', cursive;
     font-size: 70px;
-    margin-bottom: 0;
+    margin-bottom: 10px; /* Reduced margin to bring the text closer */
 }
 
 .text p {
-    font-family: 'Permanent Marker', cursive;
-    color: #36454F;
-    font-size: 40px;
+    font-family: 'Poetsen One', sans-serif; 
+    color: #007C75; 
+    font-size: 45px;
+    font-weight: bold;
     margin-top: 0;
+    margin-bottom: 0; /* Removed bottom margin to tighten spacing */
 }
 
 .circular {
@@ -90,12 +96,15 @@ nav .material-icons {
 
 footer {
     background-color: #E57F3D;
-    color: #008080;
-    padding: 10px;
+    color: #ffffff;
+    padding: 20px 10px; /* Increased padding for footer */
     text-align: center;
-    margin-top: 300px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-top: 50px;
 }
 
+/* From style2.css - Added Missing Styles */
 h2 {
     font-family: 'Exo', sans-serif;
     color: #008080;
@@ -147,21 +156,6 @@ th:last-child {
 
 td {
     color: #008080;
-}
-
-.sub-title {
-    font-family: 'Ysabeau SC', sans-serif;
-    color: #008080;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-h2 {
-    font-family: 'Exo', sans-serif;
-    color: #008080;
-    text-align: center;
-    margin-bottom: 10px;
 }
 
 .sub-title {
@@ -272,9 +266,9 @@ textarea {
 
 .transparent-image {
     opacity: 0.7; 
-  }
-  
-  .discover-more {
+}
+
+.discover-more {
     position: absolute; 
     top: 50%; 
     transform: translate(-50%, -50%);
@@ -282,8 +276,9 @@ textarea {
     padding: 10px 20px; 
     font-weight: bold; 
     text-decoration: underline;
-  }
-  .fa-search {
+}
+
+.fa-search {
     position: absolute; 
     top: 20%; 
     left: 50%; 
@@ -291,7 +286,4 @@ textarea {
     color: white; 
     padding: 10px 20px; 
     font-weight: bold; 
-  }
-
-
-
+}
