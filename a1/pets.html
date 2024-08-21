@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pets Victoria - Pets</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ysabeau+SC|Exo|Permanent+Marker|Poetsen+One">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Poetsen+One:wght@400&family=Permanent+Marker&display=swap">
 </head>
     <header>
         <nav>
             <div class="logo-dropdown">
-                <a href="index.html"><img src="images/logo.png" alt="Pets Victoria Logo"></a>
+                <a href="index.html"><img src="images/logo.jpeg" alt="Pets Victoria Logo"></a>
                 <select onchange="navigate(this.value)">
                     <option value="" disabled selected>Select an option</option>
                     <option value="index.html">Home</option>
@@ -21,15 +21,17 @@
                 </select>
             </div>
             <form>
-                <input type="text" placeholder="Search" />
+                <input type="text" placeholder="Search">
                 <span class="material-icons">search</span>
             </form>
         </nav>
     </header>
     <main>
-        <h2>Discover Pets Victoria</h2>
-        <p class="description">PETS VICTORIA IS A DEDICATED PET ADOPTION ORGANIZATION BASED IN VICTORIA, AUSTRALIA, FOCUSED ON PROVIDING A SAFE AND LOVING ENVIRONMENT FOR PETS IN NEED. WITH A COMPASSIONATE APPROACH, PETS VICTORIA WORKS TIRELESSLY TO RESCUE, REHABILITATE, AND REHOME DOGS, CATS, AND OTHER ANIMALS. THEIR MISSION IS TO CONNECT THESE DESERVING PETS WITH CARING INDIVIDUALS AND FAMILIES, CREATING LIFELONG BONDS. THE ORGANIZATION OFFERS A RANGE OF SERVICES, INCLUDING ADOPTION COUNSELING, PET EDUCATION, AND COMMUNITY SUPPORT PROGRAMS, ALL AIMED AT PROMOTING RESPONSIBLE PET OWNERSHIP AND REDUCING THE NUMBER OF HOMELESS ANIMALS.</p>
-
+        <div class="pets-heading">
+            <h2>Discover Pets Victoria</h2>
+            <p class="description">Pets Victoria is a dedicated pet adoption organization based in Victoria, Australia, focused on providing a safe and loving environment for pets in need. With a compassionate approach, Pets Victoria works tirelessly to rescue, rehabilitate, and rehome dogs, cats, and other animals. Their mission is to connect these deserving pets with caring individuals and families, creating lifelong bonds. The organization offers a range of services, including adoption counseling, pet education, and community support programs, all aimed at promoting responsible pet ownership and reducing the number of homeless animals.</p>
+        </div>
+      
         <div class="content">
             <div class="pets-container">
                 <img src="images/pets.jpeg" alt="Pets" class="pets-image">
@@ -37,58 +39,59 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>PET</th>
-                                <th>TYPE</th>
-                                <th>AGE</th>
-                                <th>LOCATION</th>
+                                <th>Pet</th>
+                                <th>Type</th>
+                                <th>Age</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>MILO</td>
-                                <td>CAT</td>
-                                <td>3 MONTHS</td>
-                                <td>MELBOURNE CBD</td>
+                                <td>Milo</td>
+                                <td>Cat</td>
+                                <td>3 months</td>
+                                <td>Melbourne CBD</td>
                             </tr>
                             <tr>
-                                <td>BAXTER</td>
-                                <td>DOG</td>
-                                <td>5 MONTHS</td>
-                                <td>CAPE WOOLAMAI</td>
+                                <td>Baxter</td>
+                                <td>Dog</td>
+                                <td>5 months</td>
+                                <td>Cape Woolamai</td>
                             </tr>
                             <tr>
-                                <td>LUNA</td>
-                                <td>CAT</td>
-                                <td>1 MONTH</td>
-                                <td>FERNTREE GULLY</td>
+                                <td>Luna</td>
+                                <td>Cat</td>
+                                <td>1 month</td>
+                                <td>Ferntree Gully</td>
                             </tr>
                             <tr>
-                                <td>WILLOW</td>
-                                <td>DOG</td>
-                                <td>48 MONTHS</td>
-                                <td>MARYSVILLE</td>
+                                <td>Willow</td>
+                                <td>Dog</td>
+                                <td>48 months</td>
+                                <td>Marysville</td>
                             </tr>
                             <tr>
-                                <td>OLIVER</td>
-                                <td>CAT</td>
-                                <td>12 MONTHS</td>
-                                <td>GRAMPIANS</td>
+                                <td>Oliver</td>
+                                <td>Cat</td>
+                                <td>12 months</td>
+                                <td>Grampians</td>
                             </tr>
                             <tr>
-                                <td>BELLA</td>
-                                <td>DOG</td>
-                                <td>10 MONTHS</td>
-                                <td>CARLTON</td>
+                                <td>Bella</td>
+                                <td>Dog</td>
+                                <td>10 months</td>
+                                <td>Carlton</td>
                             </tr>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
     </main>
     <footer>
-        <p>&copy; Copyright s123456. All Rights Reserved | Designed for Pets Victoria</p>
+        <p>&copy; Copyright [Your Name]. All Rights Reserved | Designed for Pets Victoria</p>
     </footer>
-    <script src="main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

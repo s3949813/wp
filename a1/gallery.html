@@ -4,21 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pets Victoria - Pets</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ysabeau+SC|Exo|Permanent+Marker">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Poetsen+One:wght@400&family=Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Lato&display=swap" rel="stylesheet">
 </head>
-
-<style>
-    body {
-        background-color: #ffffff;
-    }
-</style>
 <header>
     <nav>
         <div class="logo-dropdown">
-            <a href="index.html"><img src="images/logo.png" alt="Pets Victoria Logo"></a>
+            <a href="index.html"><img src="images/logo.jpeg" alt="Pets Victoria Logo"></a>
             <select onchange="navigate(this.value)">
                 <option value="" disabled selected>Select an option</option>
                 <option value="index.html">Home</option>
@@ -28,51 +23,73 @@
             </select>
         </div>
         <form>
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search">
             <span class="material-icons">search</span>
         </form>
     </nav>
 </header>
 <main>
     <h2>Pets Victoria has a lot to offer!</h2>
-    <p class="description">
+    <p class="description">For almost two decades, Pets Victoria has helped in creating true social change by bringing pet adoption into the mainstream. Our work has helped make a difference to the Victorian rescue community and thousands of pets in need of rescue and rehabilitation, but, until every pet is safe, respected, and loved, we all still have big, hairy work to do.</p>
     <div class="container">
         <div class="row">
             <div class="image-container">
                 <img src="images/cat1.jpeg" alt="Milo">
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE!</span>
+                </div>
                 <p>Milo</p>
             </div>
             <div class="image-container">
                 <img src="images/dog1.jpeg" alt="Baxter" class="transparent-image">
-                <i class="fa fa-search"></i>
-                <span class="discover-more">DISCOVER MORE</span>
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE!</span>
+                </div>
                 <p>Baxter</p>
-              </div>
-
+            </div>
             <div class="image-container">
                 <img src="images/cat2.jpeg" alt="Luna">
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE!</span>
+                </div>
                 <p>Luna</p>
             </div>
         </div>
         <div class="row">
             <div class="image-container">
                 <img src="images/dog2.jpeg" alt="Willow">
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE!</span>
+                </div>
                 <p>Willow</p>
             </div>
             <div class="image-container">
                 <img src="images/cat4.jpeg" alt="Oliver">
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE!</span>
+                </div>
                 <p>Oliver</p>
             </div>
             <div class="image-container">
                 <img src="images/dog3.jpeg" alt="Bella">
+                <div class="hover-overlay">
+                    <i class="fa fa-search"></i>
+                    <span class="discover-more">DISCOVER MORE</span>
+                </div>
                 <p>Bella</p>
             </div>
         </div>
     </div>
+    
 </main>
 <footer>
-    <p>&copy; Copyright S3949813 REYAN HUSSAIN. ALL RIGHTS RESERVED | DESIGNED FOR PETS VICTORIA</p>
+    <p>&copy; Copyright [Your Name] REYAN HUSSAIN. ALL RIGHTS RESERVED | DESIGNED FOR PETS VICTORIA</p>
 </footer>
-<script src="main.js"></script>
+<script src="./js/main.js"></script>
 </body>
 </html>
