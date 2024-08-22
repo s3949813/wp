@@ -7,7 +7,7 @@ body {
 
 header {
     background-color: #008080;
-    padding: 20px 10px; /* Increased padding for better spacing */
+    padding: 20px 10px; 
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
@@ -34,10 +34,9 @@ nav select,
 nav input[type="text"] {
     background-color: #fff;
     border: none;
-    padding: 8px 12px; /* Increased padding for form inputs */
+    padding: 8px 12px; 
     font-size: 16px;
-    border-radius: 5px; /* Added slight rounding to the form inputs */
-}
+    border-radius: 5px; 
 
 nav form {
     display: flex; 
@@ -52,7 +51,7 @@ nav input[type="text"] {
 nav .material-icons {
     background-color: #008080;
     color: #fff;
-    padding: 8px 12px; /* Adjusted padding to match input size */
+    padding: 8px 12px; 
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
@@ -63,7 +62,7 @@ nav .material-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 60px 20px; /* Increased padding for more space around content */
+    padding: 60px 20px; 
 }
 
 .text {
@@ -74,7 +73,7 @@ nav .material-icons {
     color: #E57F3D; 
     font-family: 'Permanent Marker', cursive;
     font-size: 70px;
-    margin-bottom: 10px; /* Reduced margin to bring the text closer */
+    margin-bottom: 10px; 
 }
 
 .text p {
@@ -83,7 +82,7 @@ nav .material-icons {
     font-size: 45px;
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 0; /* Removed bottom margin to tighten spacing */
+    margin-bottom: 0; 
 }
 
 .circular {
@@ -97,14 +96,14 @@ nav .material-icons {
 footer {
     background-color: #E57F3D;
     color: #ffffff;
-    padding: 20px 10px; /* Increased padding for footer */
+    padding: 20px 10px; 
     text-align: center;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     margin-top: 50px;
 }
 
-/* From style2.css - Added Missing Styles */
+
 h2 {
     font-family: 'Exo', sans-serif;
     color: #008080;
