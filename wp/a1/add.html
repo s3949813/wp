@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pets Victoria - Add a Pet</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ysabeau+SC|Exo|Permanent+Marker">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Poetsen+One:wght@400&family=Permanent+Marker&display=swap">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo-dropdown">
-                <a href="index.html"><img src="images/logo.jpeg" alt="Pets Victoria Logo"></a>
+                <a href="index.html"><img src="images/logo.png" alt="Pets Victoria Logo"></a>
                 <select onchange="navigate(this.value)">
                     <option value="" disabled selected>Select an option</option>
                     <option value="index.html">Home</option>
@@ -22,66 +27,49 @@
                 </select>
             </div>
             <form>
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" />
                 <span class="material-icons">search</span>
             </form>
         </nav>
     </header>
     <main>
         <h2>Add a pet</h2>
-        <p class="sub-title">You can add a new pet here</p>
+        <p class="sub-title">YOU CAN ADD A NEW PET HERE</p>
         <div class="content">
             <form class="add-pet-form">
                 <div class="form-group">
-                    <label for="pet-name">Pet name: <span>*</span></label>
+                    <label for="pet-name">PET NAME: <span>*</span></label>
                     <input type="text" id="pet-name" placeholder="Provide a name for the pet" class="full-width">
                 </div>
                 <div class="form-group">
-                    <label for="pet-type-select">Type: <span>*</span></label>
-                    <select name="pet-type" id="pet-type-select">
-                        <option value="" disabled selected>--Choose an option--</option>
-                        <option value="cat">Cat</option>
-                        <option value="dog">Dog</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description: <span>*</span></label>
+                    <label for="description">DESCRIPTION: <span>*</span></label>
                     <textarea id="description" placeholder="Describe the pet briefly"></textarea>
                 </div>
-                <div class="form-group choose-file">
-                    <label for="image">Select an image: <span>*</span></label>
+                <div class="form-group">
+                    <label for="image">SELECT AN IMAGE: <span>*</span></label>
                     <input type="file" id="image">
-                    <span class="max-size"><i>Max image size 500 px</i></span>
+                    <span class="max-size"><i>MAX IMAGE SIZE 500 px</i></span>
                 </div>
                 <div class="form-group">
-                    <label for="image-caption">Image caption: <span>*</span></label>
+                    <label for="image-caption">IMAGE CAPTION: <span>*</span></label>
                     <input type="text" id="image-caption" placeholder="Describe the image in one word" class="full-width">
                 </div>
                 <div class="form-group">
-                    <label for="age">Age (months): <span>*</span></label>
-                    <input type="text" id="age" placeholder="Age of the pet in months" class="full-width">
+                    <label for="age">AGE (MONTHS): <span>*</span></label>
+                    <input type="text" id="age" placeholder="Age of a pet in months" class="full-width">
                 </div>
                 <div class="form-group">
-                    <label for="location">Location: <span>*</span></label>
+                    <label for="location">LOCATION: <span>*</span></label>
                     <input type="text" id="location" placeholder="Location of the pet" class="full-width">
                 </div>
-                <div class="button-group">
-                    <button class="submit-button">
-                        <span class="material-icons">add_task</span>
-                        submit
-                    </button>
-                    <button type="reset" class="clear-button">
-                        <span class="material-icons">close</span>
-                        clear
-                    </button>
+                    </select>
                 </div>
             </form>
-            
         </div>
     </main>
     <footer>
         <p>&copy; Copyright S3949813. Reyan Hussain ALL RIGHTS RESERVED | DESIGNED FOR PETS VICTORIA</p>
     </footer>
-    <script src="./js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
