@@ -8,8 +8,8 @@ if (strstr($_SERVER['SERVER_NAME'], 'localhost')) {
 } else {
     $servername = "talsprddb02.int.its.rmit.edu.au";
     $username = "s3949813";
-    $password = "Rmit1234";
-    $dbname = "s3949813";
+    $password = "your password";
+    $dbname = "s123456";
 }
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
