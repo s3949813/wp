@@ -8,7 +8,7 @@ $dbname = "petsvictoria";
 } else {
 $servername = "talsprddb02.int.its.rmit.edu.au"; // Jacob 5 server
 $username = "s3949813"; // Your RMIT username
-$password = "Reyutel181!!!"; // Your RMIT MySQL password
+$password = "Rmit1234"; // Your RMIT MySQL password
 $dbname = "s3949813"; // Your RMIT database
 }
 
