@@ -10,16 +10,7 @@ foreach ($_POST as $key => $value) {
 }
 
 $image = null;
-$upload_dir = "images/";
-
-// Ensure the upload directory exists and is writable
-if (!file_exists($upload_dir)) {
-    mkdir($upload_dir, 0755, true);
-}
-
-if (!is_writable($upload_dir)) {
-    chmod($upload_dir, 0755);
-}
+$upload_dir = "images/"; // Make sure this directory already exists and is writable
 
 if (!empty($_FILES['file01']['name'])) {
     $tmp = $_FILES['file01']['tmp_name'];
@@ -28,8 +19,9 @@ if (!empty($_FILES['file01']['name'])) {
     
     // Generate a unique filename if a file with the same name already exists
     $i = 1;
+    $file_parts = pathinfo($filename);
     while (file_exists($dest)) {
-        $filename = pathinfo($_FILES['file01']['name'], PATHINFO_FILENAME) . "_$i." . pathinfo($_FILES['file01']['name'], PATHINFO_EXTENSION);
+        $filename = $file_parts['filename'] . "_$i." . $file_parts['extension'];
         $dest = $upload_dir . $filename;
         $i++;
     }
@@ -39,6 +31,7 @@ if (!empty($_FILES['file01']['name'])) {
     } else {
         $error = error_get_last();
         echo "Failed to upload image. Error: " . $error['message'];
+        echo "<br>Please contact your hosting provider to ensure the 'images' directory is writable.";
         exit();
     }
 } else {
