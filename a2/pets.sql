@@ -12,3 +12,5 @@ CREATE TABLE `pets` (
 `type` varchar(255) NOT NULL,
 PRIMARY KEY (`petid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
