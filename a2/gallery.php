@@ -28,6 +28,9 @@ $result = $conn->query($sql);
                     echo "</a>";
                     echo "<p>" . htmlspecialchars($row['petname']) . "</p>";
                     echo "</div>";
+
+                    // Debugging: Print image path
+                    echo "<!-- Image Path: images/" . htmlspecialchars($row['image']) . " -->";
                 }
             } else {
                 echo "<p>No pets available at the moment.</p>";
