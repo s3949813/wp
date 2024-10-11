@@ -17,10 +17,10 @@ $result = $conn->query($sql);
         <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-
                     echo "<div class='image-container'>";
                     echo "<a href='details.php?id=" . urlencode($row['petid']) . "'>";
-                    echo "<img src='images/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['petname']) . "'>";
+                    // Updated image path
+                    echo "<img src='" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['petname']) . "'>";
                     echo "<div class='hover-overlay'>";
                     echo "<i class='fa fa-search'></i>";
                     echo "<span class='discover-more'>DISCOVER MORE!</span>";
@@ -28,9 +28,6 @@ $result = $conn->query($sql);
                     echo "</a>";
                     echo "<p>" . htmlspecialchars($row['petname']) . "</p>";
                     echo "</div>";
-
-                    // Debugging: Print image path
-                    echo "<!-- Image Path: images/" . htmlspecialchars($row['image']) . " -->";
                 }
             } else {
                 echo "<p>No pets available at the moment.</p>";
