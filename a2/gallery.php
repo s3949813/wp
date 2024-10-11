@@ -20,7 +20,7 @@ $result = $conn->query($sql);
 
                     echo "<div class='image-container'>";
                     echo "<a href='details.php?id=" . urlencode($row['petid']) . "'>";
-                    echo "<img src='" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['petname']) . "'>";
+                    echo "<img src='images/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['petname']) . "'>";
                     echo "<div class='hover-overlay'>";
                     echo "<i class='fa fa-search'></i>";
                     echo "<span class='discover-more'>DISCOVER MORE!</span>";
