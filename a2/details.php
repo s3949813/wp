@@ -28,8 +28,8 @@ if (isset($_GET['id'])) {
 
     <main>
         <div class="details-content">
-            <div class="details-images">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['caption']; ?>">
+            <div class="details-image">
+                <img src="images/<?php echo $row['image']; ?>" alt="<?php echo $row['caption']; ?>">
             </div>
             <div class="details">
             <div class="item">
