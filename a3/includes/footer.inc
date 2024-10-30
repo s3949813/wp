@@ -23,7 +23,7 @@
         $conn->close();
         ?>
     </div>
-    <p>&copy; 2024 [your name]. All Rights Reserved | Designed for Pets Victoria</p>
+    <p>&copy; 2024 S3949813 REYAN HUSSAIN. All Rights Reserved | Designed for Pets Victoria</p>
 </footer>
 
     <!-- Bootstrap Bundle with Popper -->
