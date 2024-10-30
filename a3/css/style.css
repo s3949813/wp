@@ -1,0 +1,279 @@
+/* Reset margins and padding */
+body {
+  font-family: "Ysabeau SC", sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Colors */
+.bg-teal {
+  background-color: #008080;
+}
+
+.text-teal {
+  color: #008080;
+}
+
+.bg-orange {
+  background-color: #e57f3d;
+}
+
+/* Navbar */
+.logo-img {
+  height: 50px;
+}
+
+/* Hero Section */
+.carousel-item img {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+#hero {
+  background-color: #fcf9ec;
+}
+
+#hero .text h1 {
+  color: #e57f3d;
+  font-family: "Permanent Marker", cursive;
+  font-size: 70px;
+}
+
+#hero .text p {
+  font-family: "Poetsen One", sans-serif;
+  color: #008080;
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 80%;
+}
+
+#content h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+}
+
+/* Form Styling */
+#login form,
+#register form {
+  background-color: #fcf9ec;
+  border-radius: 5px;
+}
+
+h2.text-center {
+  font-family: "Ysabeau SC", sans-serif;
+  color: #36454f;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+form .btn {
+  background-color: #008080;
+  color: #ffffff;
+}
+
+form .btn:hover {
+  background-color: #e57f3d;
+  color: #ffffff;
+}
+
+/* Pet table */
+table {
+  border: 1px solid;
+}
+
+th,
+td {
+  padding: 3px;
+  text-align: left;
+}
+
+th {
+  color: #008080;
+}
+
+th:last-child {
+  border-right: 1px solid #dfdfdf;
+}
+
+td {
+  color: #36454f;
+}
+
+/* Add page */
+.sub-title {
+  font-family: "Ysabeau SC", sans-serif;
+  color: #36454f;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.add-pet-form, .edit-pet-form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: #008080;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+label span {
+  color: red;
+}
+
+.choose-file {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Ysabeau SC", sans-serif;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #36454f;
+  font-family: "Exo", sans-serif;
+}
+
+.full-width {
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  padding: 12px 40px;
+  background-color: #008080;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button span.material-icons {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #008080;
+  color: #e57f3d;
+}
+
+.clear-button {
+  background-color: #ffff;
+  border: 1.5px solid #008080;
+  color: #008080;
+}
+
+.max-size {
+  display: inline-block;
+  margin-left: 10px;
+  color: red;
+  font-style: italic;
+}
+
+/* Gallery */
+.image-container {
+  margin: 0px 60px;
+  border: 0.1px solid #ccc;
+  border-radius: 25px;
+  color: #36454f;
+}
+
+.image-container p {
+  font-weight: 600;
+  font-family: "Kanit", sans-serif;
+}
+
+.image-container img {
+  border-top-left-radius: 25px !important;
+  border-top-right-radius: 25px !important;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover img {
+  opacity: 0.4;
+}
+
+.hover-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 25px;
+}
+
+.image-container:hover .hover-overlay {
+  opacity: 1;
+}
+
+.hover-overlay .fa-search {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.hover-overlay .discover-more {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer p {
+  margin: 0;
+  color: #008080;
+}
+
+@media screen and (max-width: 1024px) {
+  #hero .text h1 {
+    font-size: 35px;
+  }
+
+  #hero .text p {
+    font-size: 30px;
+  }
+  .image-container {
+    margin: 0px 10px;
+  }
+}
