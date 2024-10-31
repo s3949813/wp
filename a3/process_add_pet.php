@@ -1,135 +1,98 @@
 <?php
-session_start();
 include('includes/db_connect.inc');
 
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Initialize response array for better error handling
+$response = array(
+    'status' => 'error',
+    'message' => '',
+    'redirect' => ''
+);
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    die("Not logged in. Please log in first.");
-}
-
-// Debug database connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Debug session variables
-echo "Debug - Session variables:<br>";
-echo "user_id: " . $_SESSION['user_id'] . "<br>";
-echo "username: " . $_SESSION['username'] . "<br>";
-
+// Validate and sanitize input
 function validateInput($str) {
-    global $conn;
-    return mysqli_real_escape_string($conn, htmlspecialchars(trim($str)));
+    return htmlspecialchars(trim($str), ENT_QUOTES, 'UTF-8');
 }
 
-// Debug POST data
-echo "Debug - POST data:<br>";
-print_r($_POST);
-echo "<br>";
+// Validate required fields
+$required_fields = ['petname', 'type', 'description', 'caption', 'age', 'location'];
+$input_data = array();
 
-// Debug FILES data
-echo "Debug - FILES data:<br>";
-print_r($_FILES);
-echo "<br>";
+foreach ($required_fields as $field) {
+    if (!isset($_POST[$field]) || empty($_POST[$field])) {
+        die("Error: {$field} is required!");
+    }
+    $input_data[$field] = validateInput($_POST[$field]);
+}
 
-// Validate and collect form data
-$petname = isset($_POST['petname']) ? validateInput($_POST['petname']) : die("Pet name is required");
-$description = isset($_POST['description']) ? validateInput($_POST['description']) : die("Description is required");
-$caption = isset($_POST['caption']) ? validateInput($_POST['caption']) : die("Caption is required");
-$age = isset($_POST['age']) ? filter_var($_POST['age'], FILTER_VALIDATE_FLOAT) : die("Age is required");
-$location = isset($_POST['location']) ? validateInput($_POST['location']) : die("Location is required");
-$type = isset($_POST['type']) ? validateInput($_POST['type']) : die("Type is required");
-$username = isset($_SESSION['username']) ? validateInput($_SESSION['username']) : die("Username not found in session");
-
-// Handle file upload
+// Image handling
+$image = null;
 if (!empty($_FILES['file01']['name'])) {
     $tmp = $_FILES['file01']['tmp_name'];
-    $dest = "images/" . basename($_FILES['file01']['name']);
-
-    // Check if images directory exists and is writable
-    if (!is_dir("images/")) {
-        die("Images directory does not exist");
+    $filename = basename($_FILES['file01']['name']);
+    // Add timestamp to filename to prevent duplicates
+    $filename = time() . '_' . $filename;
+    $dest = "images/" . $filename;
+    
+    // Validate file type
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!in_array($_FILES['file01']['type'], $allowed_types)) {
+        die("Error: Invalid file type. Only JPG, PNG and GIF are allowed.");
     }
-    if (!is_writable("images/")) {
-        die("Images directory is not writable");
-    }
-
-    // Move uploaded file
+    
     if (move_uploaded_file($tmp, $dest)) {
         $image = $dest;
-        echo "Debug - File uploaded successfully to: " . $dest . "<br>";
     } else {
-        die("Failed to upload image. Error: " . error_get_last()['message']);
+        die("Failed to upload image.");
     }
 } else {
-    die("Image is required!");
+    die("Error: Image is required!");
 }
 
-// Debug values before SQL
-echo "Debug - Values to be inserted:<br>";
-echo "petname: $petname<br>";
-echo "description: $description<br>";
-echo "image: $image<br>";
-echo "caption: $caption<br>";
-echo "age: $age<br>";
-echo "location: $location<br>";
-echo "type: $type<br>";
-echo "username: $username<br>";
-
-// Check if pets table exists
-$table_check = $conn->query("SHOW TABLES LIKE 'pets'");
-if ($table_check->num_rows == 0) {
-    die("Pets table does not exist in database");
-}
-
-// Show table structure
-$structure = $conn->query("DESCRIBE pets");
-echo "Debug - Table structure:<br>";
-while ($row = $structure->fetch_assoc()) {
-    print_r($row);
-    echo "<br>";
-}
-
-// Prepare SQL statement
-$sql = "INSERT INTO pets (petname, description, image, caption, age, location, type, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-echo "Debug - SQL query: " . $sql . "<br>";
-
-$stmt = $conn->prepare($sql);
-if ($stmt === false) {
-    die("Prepare failed: " . $conn->error . 
-        "<br>Error number: " . $conn->errno .
-        "<br>SQL State: " . $conn->sqlstate);
-}
-
-// Bind parameters using double for age
-if (!$stmt->bind_param("ssssdss", 
-    $petname, 
-    $description, 
-    $image, 
-    $caption, 
-    $age, 
-    $location, 
-    $type, 
-    $username
-)) {
-    die("Binding parameters failed: " . $stmt->error);
-}
-
-// Execute the statement
-if ($stmt->execute()) {
-    echo "Debug - Insert successful. Last insert ID: " . $conn->insert_id . "<br>";
-    $stmt->close();
+try {
+    // Prepare SQL statement - removed username field since it's not in the table
+    $sql = "INSERT INTO pets (petname, description, image, caption, age, location, type) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        throw new Exception("Prepare failed: " . $conn->error);
+    }
+    
+    // Bind parameters
+    $stmt->bind_param("ssssiss", 
+        $input_data['petname'],
+        $input_data['description'],
+        $image,
+        $input_data['caption'],
+        $input_data['age'],
+        $input_data['location'],
+        $input_data['type']
+    );
+    
+    // Execute the statement
+    if (!$stmt->execute()) {
+        throw new Exception("Execute failed: " . $stmt->error);
+    }
+    
+    // Success! Set response
+    $response['status'] = 'success';
+    $response['redirect'] = 'pets.php';
+    
+} catch (Exception $e) {
+    $response['message'] = $e->getMessage();
+} finally {
+    // Clean up
+    if (isset($stmt)) {
+        $stmt->close();
+    }
     $conn->close();
-    header("Location: pets.php");
-    exit(0);
-} else {
-    die("Execute failed: " . $stmt->error);
 }
 
-$stmt->close();
-$conn->close();
+// Handle response
+if ($response['status'] === 'success') {
+    header("Location: " . $response['redirect']);
+    exit();
+} else {
+    echo "Error: " . $response['message'];
+}
 ?>
