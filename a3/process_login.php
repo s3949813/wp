@@ -1,36 +1,40 @@
 <?php
-session_start();  // Start session
+session_start();
 
 include('includes/db_connect.inc');
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    $encryptedPassword = substr(hash('sha256', $password), 0, 40);
-
-    // Prepare SQL query
+    
+    // Use full SHA256 hash instead of truncated version
+    $encryptedPassword = hash('sha256', $password);
+    
+    // Improved SQL query with proper error handling
     $stmt = $conn->prepare("SELECT userID, username FROM users WHERE username = ? AND password = ?");
+    if (!$stmt) {
+        $_SESSION['login_error'] = "System error, please try again later.";
+        header("Location: login.php");
+        exit();
+    }
+    
     $stmt->bind_param("ss", $username, $encryptedPassword);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows === 1) {
+    if ($result && $result->num_rows === 1) {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['userID'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['message'] = "Login successful.";
-
-        header("Location: index.php"); // Redirect to home
+        $_SESSION['username'] = htmlspecialchars($user['username']);
+        header("Location: index.php");
         exit();
     } else {
         $_SESSION['login_error'] = "Invalid username or password.";
-        header("Location: login.php"); // Redirect back to login
+        header("Location: login.php");
         exit();
     }
 
     $stmt->close();
-    $conn->close();
 } else {
     header("Location: login.php");
     exit();
