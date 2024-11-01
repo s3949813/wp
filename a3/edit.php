@@ -17,7 +17,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$pet_id = intval($_GET['id']);
+$pet_id = intval($_GET['id']); // Sanitize input
 
 // Fetch existing pet data
 $sql = "SELECT * FROM pets WHERE petid = ?";
@@ -32,12 +32,6 @@ if ($result->num_rows === 0) {
 }
 
 $pet = $result->fetch_assoc();
-
-// Check if the logged-in user is the owner of the pet
-if (!isset($_SESSION['username']) || $pet['username'] !== $_SESSION['username']) {
-    echo "You do not have permission to edit this pet.";
-    exit();
-}
 
 // Initialize form variables
 $pet_name = htmlspecialchars($pet['petname']);
