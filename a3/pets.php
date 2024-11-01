@@ -2,50 +2,8 @@
 $title = "Pets - Pets Victoria";
 include('includes/header.inc');
 include('includes/nav.inc');
-
-// Database connection
-include('includes/db_connect.inc');
-
-// Check if 'petid' is set and retrieve the pet details
-if (isset($_GET['petid'])) {
-    $petid = $_GET['petid'];
-
-    // Query to fetch pet details from the database
-    $sql = "SELECT * FROM pets WHERE petID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $petid); // Bind the petid as an integer
-
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            // Fetch the pet details
-            $pet = $result->fetch_assoc();
-            // Display the pet details
-            echo "<h3>" . htmlspecialchars($pet['petname']) . "</h3>";
-            echo "<p>" . htmlspecialchars($pet['description']) . "</p>";
-            if (!empty($pet['image'])) {
-                echo "<img src='" . htmlspecialchars($pet['image']) . "' alt='Pet Image' class='img-fluid' />";
-            }
-            echo "<p><strong>Caption:</strong> " . htmlspecialchars($pet['caption']) . "</p>";
-            echo "<p><strong>Age:</strong> " . htmlspecialchars($pet['age']) . "</p>";
-            echo "<p><strong>Location:</strong> " . htmlspecialchars($pet['location']) . "</p>";
-            echo "<p><strong>Type:</strong> " . htmlspecialchars($pet['type']) . "</p>";
-        } else {
-            echo "<p class='text-danger'>No pet found with the provided ID.</p>";
-        }
-    } else {
-        echo "<p class='text-danger'>Error executing query: " . htmlspecialchars($conn->error) . "</p>";
-    }
-
-    $stmt->close();
-} else {
-    echo "<p class='text-danger'>Error: Pet ID is not provided.</p>";
-}
-
-$conn->close();
 ?>
-
-<main class="container-fluid">
+    <main class="container-fluid">
   <section id="content">
     <div class="container-fluid my-5 text-center">
       <h2>Discover Pets Victoria</h2>
@@ -62,12 +20,49 @@ $conn->close();
         homeless animals.
       </p>
       <div class="row mt-5">
-        <!-- Pet details will be displayed here -->
+        <div class="col-lg-3 my-3">
+            <img src="images/pets.jpeg" alt="Pets" class="pets-image">
+        </div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 my-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Pet</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                            include('includes/db_connect.inc');
+
+                            $sql = "select * from pets";
+
+                            $result = $conn->query($sql);
+                            //loop through the table of results printing each row
+                            if ($result->num_rows > 0) {
+
+                                while ($row = $result->fetch_array()) {
+                                    print "<tr>\n";
+                                    print "<td><a href='details.php?id=" . urlencode($row['petid']) . "'>{$row['petname']}</a></td>\n";
+                                    print "<td>{$row['type']}</td>\n";
+                                    print "<td>{$row['age']} months</td>\n";
+                                    print "<td>{$row['location']}</td>\n";
+                                    print "</tr>\n";
+                                }
+                            } else {
+                                echo "<tr><td colspan=4>0 results</td></tr>";
+                            }
+                            ?>
+                </tbody>
+            </table>
+        </div>
       </div>
     </div>
   </section>
 </main>
-
 <?php
 include('includes/footer.inc');
 ?>
