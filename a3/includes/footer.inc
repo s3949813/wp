@@ -9,7 +9,7 @@
         // Only show user links if user is logged in
         if (isset($_SESSION['username'])) {
             $logged_in_username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); // Escape for security
-            echo "<p>Welcome, <a href='user.php?username=$logged_in_username' class='mx-2'>$logged_in_username</a></p>";
+            echo "<p> <a href='user.php?username=$logged_in_username' class='mx-2'>$logged_in_username</a></p>";
 
             // Database connection
             include('includes/db_connect.inc');
