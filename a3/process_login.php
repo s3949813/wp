@@ -4,20 +4,21 @@ session_start();
 include('includes/db_connect.inc');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
+    // Collect and sanitize user input
+    $username = trim(mysqli_real_escape_string($conn, $_POST['username']));
     $password = trim($_POST['password']);
-    
-    // Use full SHA256 hash instead of truncated version
+
+    // Hash the password using SHA-256
     $encryptedPassword = hash('sha256', $password);
-    
-    // Improved SQL query with proper error handling
+
+    // Prepare the SQL query to select the user
     $stmt = $conn->prepare("SELECT userID, username FROM users WHERE username = ? AND password = ?");
     if (!$stmt) {
         $_SESSION['login_error'] = "System error, please try again later.";
         header("Location: login.php");
         exit();
     }
-    
+
     $stmt->bind_param("ss", $username, $encryptedPassword);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -29,13 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: index.php");
         exit();
     } else {
+        // Invalid credentials
         $_SESSION['login_error'] = "Invalid username or password.";
         header("Location: login.php");
         exit();
     }
-
-    $stmt->close();
 } else {
+    // Invalid request method
+    $_SESSION['login_error'] = "Invalid request method.";
     header("Location: login.php");
     exit();
 }
