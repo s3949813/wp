@@ -11,20 +11,14 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_GET['id'])) {
     $pet_id = intval($_GET['id']);
 
-    // Fetch pet details to get the image path and owner info
-    $sql = "SELECT image, username FROM pets WHERE petid = ?";
+    // Fetch pet details to get the image path
+    $sql = "SELECT image FROM pets WHERE petid = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $pet_id);
     $stmt->execute();
-    $stmt->bind_result($image, $owner);
+    $stmt->bind_result($image);
     $stmt->fetch();
     $stmt->close();
-
-    // Ensure the logged-in user is the owner of the pet
-    if ($_SESSION['username'] !== $owner) {
-        echo "You are not authorized to delete this pet.";
-        exit();
-    }
 
     // Delete the image file if it exists
     if (file_exists($image)) {

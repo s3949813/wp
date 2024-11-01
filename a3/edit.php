@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = "Edit a Pet - Pets Victoria";
 include('includes/header.inc');
 include('includes/nav.inc');
@@ -16,7 +17,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$pet_id = $_GET['id'];
+$pet_id = intval($_GET['id']);
 
 // Fetch existing pet data
 $sql = "SELECT * FROM pets WHERE petid = ?";
@@ -33,7 +34,7 @@ if ($result->num_rows === 0) {
 $pet = $result->fetch_assoc();
 
 // Check if the logged-in user is the owner of the pet
-if ($pet['username'] !== $_SESSION['username']) {
+if (!isset($_SESSION['username']) || $pet['username'] !== $_SESSION['username']) {
     echo "You do not have permission to edit this pet.";
     exit();
 }
