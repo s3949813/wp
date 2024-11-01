@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start the session
 $title = "Details - Pets Victoria";
 include('includes/header.inc');
 include('includes/nav.inc');
@@ -50,8 +51,8 @@ if (isset($_GET['id'])) {
                     </div>
                     
                     <?php 
-                    // Make buttons visible to everyone
-                    if (true): 
+                    // Show buttons only if the user is logged in
+                    if (isset($_SESSION['username'])): 
                     ?>
                     <div class="button-group d-flex justify-content-start gap-1">
                         <a href="edit.php?id=<?php echo $row['petid']; ?>" class="btn btn-primary">Edit</a>
