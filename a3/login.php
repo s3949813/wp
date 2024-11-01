@@ -1,41 +1,56 @@
-<?php
-$title = "Login - Pets Victoria";
-include('includes/header.inc');
-include('includes/nav.inc');
-?>
-
-<main class="container-fluid">
-    <section class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center text-teal">Login</h2>
-
-                <!-- Display login error message -->
-                <?php if (isset($_SESSION['login_error'])): ?>
-                    <div class="alert alert-danger">
-                        <?php
-                            echo $_SESSION['login_error'];
-                            unset($_SESSION['login_error']);  // Clear the error message after displaying
-                        ?>
-                    </div>
-                <?php endif; ?>
-
-                <form class="bg-light p-4 shadow rounded" action="process_login.php" method="POST">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="btn bg-teal text-white w-100">Login</button>
-                </form>
-            </div>
-        </div>
-    </section>
-</main>
-
-<?php
-include('includes/footer.inc');
-?>
+<?php 
+session_start(); 
+$title = "Login"; 
+include('includes/header.inc'); 
+include('includes/nav.inc'); 
+include('includes/db_connect.inc'); 
+ 
+// Enable error reporting 
+ini_set('display_errors', 1); 
+ini_set('display_startup_errors', 1); 
+error_reporting(E_ALL); 
+ 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+    $username = htmlspecialchars($_POST['username']); 
+    $password = htmlspecialchars($_POST['password']); 
+ 
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?"); 
+    $stmt->bind_param("s", $username); 
+    $stmt->execute(); 
+    $result = $stmt->get_result(); 
+ 
+    if ($result->num_rows > 0) { 
+        $row = $result->fetch_assoc(); 
+        if (password_verify($password, $row['password'])) { 
+            $_SESSION['loggedin'] = true; 
+            $_SESSION['username'] = $username; 
+            header('Location: index.php'); 
+            exit; 
+        } else { 
+            echo "Invalid password."; 
+        } 
+    } else { 
+        echo "No user found with that username."; 
+    } 
+ 
+    $stmt->close(); 
+    $conn->close(); 
+} 
+?> 
+ 
+<main class="container"> 
+    <h2>Login</h2> 
+    <form action="login.php" method="post"> 
+        <div class="form-group"> 
+            <label for="username">Username: <span>*</span></label> 
+            <input type="text" id="username" name="username" class="form-control" required> 
+        </div> 
+        <div class="form-group"> 
+            <label for="password">Password: <span>*</span></label> 
+            <input type="password" id="password" name="password" class="form-control" required> 
+        </div> 
+        <button type="submit" class="btn btn-primary">Login</button> 
+    </form> 
+</main> 
+ 
+<?php include('includes/footer.inc'); ?>
