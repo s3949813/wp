@@ -19,24 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if username already exists
     $check_sql = "SELECT userID FROM users WHERE username = ?";
     $check_stmt = $conn->prepare($check_sql);
-    
+
     if ($check_stmt === false) {
         die("Error preparing check statement: " . $conn->error);
     }
-    
+
     $check_stmt->bind_param('s', $username);
-    
+
     if (!$check_stmt->execute()) {
         die("Error executing check statement: " . $check_stmt->error);
     }
-    
+
     $check_stmt->store_result();
 
     if ($check_stmt->num_rows > 0) {
         $check_stmt->close();
         die("Username is already taken. Please try a different one.");
     }
-    
+
     $check_stmt->close();
 
     // Hash password
@@ -45,10 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert new user
     $insert_sql = "INSERT INTO users (username, password, reg_date) VALUES (?, ?, NOW())";
     $stmt = $conn->prepare($insert_sql);
-    
+
     if ($stmt === false) {
-        die("Error preparing insert statement: " . $conn->error . 
-            "\nSQL: " . $insert_sql);
+        die("Error preparing statement: " . $conn->error . "\nSQL: " . $insert_sql);
     }
 
     $stmt->bind_param('ss', $username, $encrypted_password);
