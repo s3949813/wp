@@ -8,6 +8,9 @@
 
         // Only show user links if user is logged in
         if (isset($_SESSION['username'])) {
+            $logged_in_username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); // Escape for security
+            echo "<p>Welcome, <a href='user.php?username=$logged_in_username' class='mx-2'>$logged_in_username</a></p>";
+
             // Database connection
             include('includes/db_connect.inc');
 
@@ -28,20 +31,20 @@
                 echo "Error executing query: " . $conn->error;
             } else {
                 if ($result->num_rows > 0) {
-                    // Display each username as a hyperlink
+                    // Display each username as a hyperlink, excluding the logged-in user's username
                     while ($row = $result->fetch_assoc()) {
                         $username = htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8'); // Escape for security
-                        echo "<a href='user.php?username=$username' class='mx-2'>$username</a>";
+                        if ($username !== $logged_in_username) {
+                            echo "<a href='user.php?username=$username' class='mx-2'>$username</a>";
+                        }
                     }
-                } else {
-                    echo "<p>No users have uploaded pets yet.</p>";
                 }
             }
 
             // Close the database connection
             $conn->close();
         } else {
-            // Optional: Show a message or login link for non-logged in users
+            // Show a login link for non-logged-in users
             echo "<p>Please <a href='login.php'>login</a> to see user profiles</p>";
         }
         ?>
